@@ -1,4 +1,19 @@
-aws_cdk.aws_codecommit==1.121.0
-aws_cdk.pipelines==1.121.0
-aws_cdk.aws_s3==1.121.0
+# ⚠️  CRITICAL SECURITY WARNING ⚠️
+# AWS CDK v1 reached End-of-Support on June 1, 2023
+# No longer receives security updates, bug fixes, or patches
+# Known vulnerabilities: CVE-2024-45037, CVE-2025-2598, CVE-2025-23206
+# IMMEDIATE ACTION REQUIRED: Migrate to AWS CDK v2
+#
+# Current dependencies (END-OF-LIFE):
+aws_cdk.aws_codecommit==1.121.0  # ❌ DEPRECATED - No security updates
+aws_cdk.pipelines==1.121.0        # ❌ DEPRECATED - No security updates
+aws_cdk.aws_s3==1.121.0           # ❌ DEPRECATED - No security updates
 -e .
+#
+# Recommended migration to CDK v2:
+# Replace all above dependencies with:
+# aws-cdk-lib>=2.178.0
+# constructs>=10.0.0
+#
+# Migration requires code changes - see SECURITY_ANALYSIS.md for details
+# Migration guide: https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html

@@ -10,6 +10,8 @@ class RepositoryStack(cdk.Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Create codecommit repository to store files
+        # SECURITY NOTE: CodeCommit encrypts repositories at rest by default using AWS-managed keys
+        # For enhanced security, consider using customer-managed KMS keys (requires CDK v2)
         codecommit.Repository(
             self, 'Repository',
             repository_name='cdkpipeline_with_cfn_nag',

@@ -1,4 +1,5 @@
 # importing modules
+import os
 from aws_cdk import (
     aws_codecommit as codecommit,
     pipelines,
@@ -6,6 +7,9 @@ from aws_cdk import (
 )
 # import s3 bucket stack
 from s3bucket.bucket_stack import BucketStack
+
+# SECURITY NOTE: This code uses AWS CDK v1 which is End-of-Life
+# See SECURITY_ANALYSIS.md for critical security issues and migration guide
 
 # Class for creation of the S3Bucket Stage
 class S3BucketStage(cdk.Stage):
@@ -48,12 +52,15 @@ class CdkPipelineStack(cdk.Stack):
         )
 
         # Deploy the S3 Bucket Stage
+        # SECURITY: Environment should be specified using environment variables
+        # not hardcoded account IDs. Use CDK_DEFAULT_ACCOUNT and CDK_DEFAULT_REGION
         s3Deplpoy = pipeline.add_stage(
             S3BucketStage(
                 self, 'S3BucketStage',
+                # Use environment variables for account/region configuration
                 # env=cdk.Environment(
-                #     account="290794210101", 
-                #     region="eu-west-1"
+                #     account=os.getenv('CDK_DEFAULT_ACCOUNT'),
+                #     region=os.getenv('CDK_DEFAULT_REGION')
                 # )
             )
         )
